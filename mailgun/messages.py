@@ -1,7 +1,7 @@
 
 from settings import *
 import logging, requests
-from validate_email import validate_email
+from exceptions import *
 
 _logger = logging.getLogger('MailGun-PY')
 for handler in LOGGER_HANDLERS:
@@ -20,7 +20,7 @@ class MessageSender(object):
                     schedule_time = None, **kwargs):
         if not (to_addrs and subject and (text or html)):
             _logger("Missing required parameters when sending email")
-            return
+            raise MissingRequiredFieldException()
         if not from_addr:
             from_addr = DEFAULT_FROM_ADDR
         args = kwargs
