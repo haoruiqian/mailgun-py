@@ -58,7 +58,4 @@ class MessageSender(object):
         response = requests.post(self.url, files = files, data = args, auth = (API_USER, API_KEY))
         status = response.status_code
         if status != 200:
-            _logger.error("Failed to send email, server return %d" % status)
-            _logger.error(response.text)
-            return False
-        return True
+            raise APIException(status, response.text)
