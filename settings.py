@@ -8,5 +8,3 @@ formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 stream_handler.setFormatter(formatter)
 LOGGER_HANDLERS = [stream_handler]
 DEFAULT_LOGGER_LEVEL = 'INFO'
-
-from local_settings import *
